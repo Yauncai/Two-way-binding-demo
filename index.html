@@ -9,11 +9,21 @@
 <body>
 
     <div id="app">
-        <h1> SnoozeBerry Message Tester</h1>
+        <h1>SnoozeBerry Message Tester</h1>
 
         <label for="message">Type your snooze message:</label>
         <input type="text" id="message" v-model="snoozeMessage" placeholder="e.g. I believe in you">
+        
+        <h2>Live Preview</h2>
+        <p>The alarm will say: <strong>{{ snoozeMessage }}</strong></p>
 
+        <p v-if="snoozeMessage.length > 20">
+        That message is quite long. The alarm might fall asleep reading it.
+        </p>
+
+        <button @click="snoozeMessage = 'I believe in you'">
+        Reset to Default Message
+        </button>
 
     </div>
 
@@ -22,9 +32,9 @@
 
         createApp({
             setup() {
-                const snoozemessage = ref('')
+                const snoozeMessage = ref('')
                 return {
-                    snoozemessage
+                    snoozeMessage
                 }
             }
         }).mount('#app')
